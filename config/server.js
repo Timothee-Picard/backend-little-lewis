@@ -8,6 +8,6 @@ module.exports = ({ env }) => ({
     populateRelations: env.bool('WEBHOOKS_POPULATE_RELATIONS', false),
   },
   node: {
-    max_memory_restart: '510M',
+    max_memory_restart: '256M',
   },
 });
