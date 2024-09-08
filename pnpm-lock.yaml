@@ -26,6 +26,9 @@ importers:
       '@strapi/strapi':
         specifier: 4.25.9
         version: 4.25.9(@babel/runtime@7.25.6)(@codemirror/autocomplete@6.18.0(@codemirror/language@6.10.2)(@codemirror/state@6.4.1)(@codemirror/view@6.33.0)(@lezer/common@1.2.1))(@codemirror/language@6.10.2)(@codemirror/lint@6.8.1)(@codemirror/search@6.5.6)(@codemirror/state@6.4.1)(@codemirror/theme-one-dark@6.1.2)(@codemirror/view@6.33.0)(@swc/helpers@0.5.13)(@types/hoist-non-react-statics@3.3.5)(@types/node@22.5.4)(@types/react@18.3.5)(better-sqlite3@8.6.0)(codemirror@5.65.17)(pg@8.12.0)(react-dom@18.3.1(react@18.3.1))(react-router-dom@5.3.4(react@18.3.1))(react@18.3.1)(redux@4.2.1)(styled-components@5.3.3(@babel/core@7.25.2)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1))(terser@5.31.6)(type-fest@2.19.0)
+      '@strapi/typescript-utils':
+        specifier: ^4.25.10
+        version: 4.25.10
       better-sqlite3:
         specifier: 8.6.0
         version: 8.6.0
@@ -1504,6 +1507,10 @@ packages:
 
   '@strapi/types@4.25.9':
     resolution: {integrity: sha512-XwiEcC3JVMLVIGy6vtAEcw8las4RDcj10h0Ydeyb9YOqxMO47wMZMHED5oTlUDa3C1iSPTHN8DbSoSu6eot6Bg==}
+    engines: {node: '>=18.0.0 <=20.x.x', npm: '>=6.0.0'}
+
+  '@strapi/typescript-utils@4.25.10':
+    resolution: {integrity: sha512-J/+ckskG4EWsKevwPGe8JWGtnE+XFdJklMo/QOgdKQZXqBQdvUyCNA3mmGkcpzpd4pYMbC6H1d/znJpzhM9j+w==}
     engines: {node: '>=18.0.0 <=20.x.x', npm: '>=6.0.0'}
 
   '@strapi/typescript-utils@4.25.9':
@@ -8064,6 +8071,15 @@ snapshots:
       - sqlite3
       - supports-color
       - tedious
+
+  '@strapi/typescript-utils@4.25.10':
+    dependencies:
+      chalk: 4.1.2
+      cli-table3: 0.6.5
+      fs-extra: 10.0.0
+      lodash: 4.17.21
+      prettier: 2.8.4
+      typescript: 5.2.2
 
   '@strapi/typescript-utils@4.25.9':
     dependencies:
