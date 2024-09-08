@@ -1,0 +1,150 @@
+{
+  "kind": "collectionType",
+  "collectionName": "projets",
+  "info": {
+    "singularName": "projet",
+    "pluralName": "projets",
+    "displayName": "Projet",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Nom": {
+      "type": "string",
+      "required": true
+    },
+    "Presentation": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "Couleur_1": {
+      "type": "customField",
+      "regex": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
+      "customField": "plugin::color-picker.color"
+    },
+    "Couleur_2": {
+      "type": "customField",
+      "regex": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
+      "customField": "plugin::color-picker.color"
+    },
+    "Couleur_3": {
+      "type": "customField",
+      "regex": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
+      "customField": "plugin::color-picker.color"
+    },
+    "Titre_Description": {
+      "type": "string"
+    },
+    "Description": {
+      "type": "text"
+    },
+    "Client": {
+      "type": "string"
+    },
+    "Annee": {
+      "type": "biginteger",
+      "max": "3000",
+      "min": "0"
+    },
+    "Mise_en_avant": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "Transition": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "Images": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "Separateur2": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "Images2": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "Image_Fin": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "Conclusion": {
+      "type": "text"
+    },
+    "Nombre1": {
+      "type": "biginteger"
+    },
+    "Label1": {
+      "type": "string"
+    },
+    "Nombre2": {
+      "type": "biginteger"
+    },
+    "Label2": {
+      "type": "string"
+    },
+    "Nombre3": {
+      "type": "biginteger"
+    },
+    "Label3": {
+      "type": "string"
+    },
+    "Separateur1": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::categorie.categorie",
+      "mappedBy": "projet"
+    },
+    "Principale": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

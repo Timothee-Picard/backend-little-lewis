@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "moodboards",
+  "info": {
+    "singularName": "moodboard",
+    "pluralName": "moodboards",
+    "displayName": "Moodboard",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Visuel": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "Top": {
+      "type": "decimal",
+      "required": true
+    },
+    "Left": {
+      "type": "decimal",
+      "required": true
+    },
+    "Rotation": {
+      "type": "biginteger",
+      "min": "0",
+      "max": "360"
+    }
+  }
+}

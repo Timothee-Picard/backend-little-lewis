@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "evenements",
+  "info": {
+    "singularName": "evenement",
+    "pluralName": "evenements",
+    "displayName": "Evenement",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Nom": {
+      "type": "string",
+      "required": true
+    },
+    "Type": {
+      "type": "enumeration",
+      "enum": [
+        "Exposition"
+      ],
+      "required": true
+    },
+    "Annee": {
+      "type": "biginteger",
+      "required": true,
+      "max": "5000",
+      "min": "0"
+    },
+    "Images": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": true
+    }
+  }
+}

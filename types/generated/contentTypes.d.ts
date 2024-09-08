@@ -590,6 +590,53 @@ export interface PluginContentReleasesReleaseAction
   };
 }
 
+export interface PluginI18NLocale extends Schema.CollectionType {
+  collectionName: 'i18n_locale';
+  info: {
+    singularName: 'locale';
+    pluralName: 'locales';
+    collectionName: 'locales';
+    displayName: 'Locale';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.SetMinMax<
+        {
+          min: 1;
+          max: 50;
+        },
+        number
+      >;
+    code: Attribute.String & Attribute.Unique;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::i18n.locale',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::i18n.locale',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginUsersPermissionsPermission
   extends Schema.CollectionType {
   collectionName: 'up_permissions';
@@ -741,46 +788,231 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
-export interface PluginI18NLocale extends Schema.CollectionType {
-  collectionName: 'i18n_locale';
+export interface ApiCategorieCategorie extends Schema.CollectionType {
+  collectionName: 'categories';
   info: {
-    singularName: 'locale';
-    pluralName: 'locales';
-    collectionName: 'locales';
-    displayName: 'Locale';
-    description: '';
+    singularName: 'categorie';
+    pluralName: 'categories';
+    displayName: 'Categorie';
   };
   options: {
-    draftAndPublish: false;
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: false;
-    };
+    draftAndPublish: true;
   };
   attributes: {
-    name: Attribute.String &
-      Attribute.SetMinMax<
-        {
-          min: 1;
-          max: 50;
-        },
-        number
-      >;
-    code: Attribute.String & Attribute.Unique;
+    Nom: Attribute.String;
+    projet: Attribute.Relation<
+      'api::categorie.categorie',
+      'manyToOne',
+      'api::projet.projet'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'plugin::i18n.locale',
+      'api::categorie.categorie',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'plugin::i18n.locale',
+      'api::categorie.categorie',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiContactContact extends Schema.SingleType {
+  collectionName: 'contacts';
+  info: {
+    singularName: 'contact';
+    pluralName: 'contacts';
+    displayName: 'Contact';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Mail: Attribute.Email;
+    Telephone: Attribute.BigInteger &
+      Attribute.SetMinMax<
+        {
+          min: '100000000';
+          max: '0999999999';
+        },
+        string
+      >;
+    Adresse_Paris: Attribute.String;
+    Adresse_Montpellier: Attribute.String;
+    Lien_Instagram: Attribute.Text;
+    Lien_Linkedin: Attribute.Text;
+    Lien_Dribble: Attribute.Text;
+    Lien_Tiktok: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::contact.contact',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::contact.contact',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiEvenementEvenement extends Schema.CollectionType {
+  collectionName: 'evenements';
+  info: {
+    singularName: 'evenement';
+    pluralName: 'evenements';
+    displayName: 'Evenement';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Nom: Attribute.String & Attribute.Required;
+    Type: Attribute.Enumeration<['Exposition']> & Attribute.Required;
+    Annee: Attribute.BigInteger &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: '0';
+          max: '5000';
+        },
+        string
+      >;
+    Images: Attribute.Media<'images', true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::evenement.evenement',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::evenement.evenement',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiMoodboardMoodboard extends Schema.CollectionType {
+  collectionName: 'moodboards';
+  info: {
+    singularName: 'moodboard';
+    pluralName: 'moodboards';
+    displayName: 'Moodboard';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Visuel: Attribute.Media<'images'> & Attribute.Required;
+    Top: Attribute.Decimal & Attribute.Required;
+    Left: Attribute.Decimal & Attribute.Required;
+    Rotation: Attribute.BigInteger &
+      Attribute.SetMinMax<
+        {
+          min: '0';
+          max: '360';
+        },
+        string
+      >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::moodboard.moodboard',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::moodboard.moodboard',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiProjetProjet extends Schema.CollectionType {
+  collectionName: 'projets';
+  info: {
+    singularName: 'projet';
+    pluralName: 'projets';
+    displayName: 'Projet';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Nom: Attribute.String & Attribute.Required;
+    Presentation: Attribute.Media<'images'> & Attribute.Required;
+    Couleur_1: Attribute.String &
+      Attribute.CustomField<'plugin::color-picker.color'>;
+    Couleur_2: Attribute.String &
+      Attribute.CustomField<'plugin::color-picker.color'>;
+    Couleur_3: Attribute.String &
+      Attribute.CustomField<'plugin::color-picker.color'>;
+    Titre_Description: Attribute.String;
+    Description: Attribute.Text;
+    Client: Attribute.String;
+    Annee: Attribute.BigInteger &
+      Attribute.SetMinMax<
+        {
+          min: '0';
+          max: '3000';
+        },
+        string
+      >;
+    Mise_en_avant: Attribute.Media<'images'>;
+    Transition: Attribute.Media<'images'>;
+    Images: Attribute.Media<'images', true>;
+    Separateur2: Attribute.Media<'images'>;
+    Images2: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
+    Image_Fin: Attribute.Media<'images'>;
+    Conclusion: Attribute.Text;
+    Nombre1: Attribute.BigInteger;
+    Label1: Attribute.String;
+    Nombre2: Attribute.BigInteger;
+    Label2: Attribute.String;
+    Nombre3: Attribute.BigInteger;
+    Label3: Attribute.String;
+    Separateur1: Attribute.Media<'images'>;
+    categories: Attribute.Relation<
+      'api::projet.projet',
+      'oneToMany',
+      'api::categorie.categorie'
+    >;
+    Principale: Attribute.Media<'images'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::projet.projet',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::projet.projet',
       'oneToOne',
       'admin::user'
     > &
@@ -802,10 +1034,15 @@ declare module '@strapi/types' {
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
+      'plugin::i18n.locale': PluginI18NLocale;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'plugin::i18n.locale': PluginI18NLocale;
+      'api::categorie.categorie': ApiCategorieCategorie;
+      'api::contact.contact': ApiContactContact;
+      'api::evenement.evenement': ApiEvenementEvenement;
+      'api::moodboard.moodboard': ApiMoodboardMoodboard;
+      'api::projet.projet': ApiProjetProjet;
     }
   }
 }
