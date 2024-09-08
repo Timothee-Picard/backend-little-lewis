@@ -1,16 +1,11 @@
+import securityConfig from "./security";
+
 export default [
   'strapi::logger',
   'strapi::errors',
   {
     name: 'strapi::security',
-    config: {
-      csp: {
-        policies: {
-          'default-src': ["'self'"],
-          'img-src': ["'self'", "data:", "blob:", "https://res.cloudinary.com"],
-        },
-      },
-    },
+    config: securityConfig,
   },
   'strapi::cors',
   'strapi::poweredBy',
