@@ -920,6 +920,7 @@ export interface ApiHomeHome extends Schema.SingleType {
     singularName: 'home';
     pluralName: 'homes';
     displayName: 'Home';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -950,6 +951,7 @@ export interface ApiHomeHome extends Schema.SingleType {
       'oneToOne',
       'api::projet.projet'
     >;
+    Video: Attribute.Media<'videos'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
