@@ -32,6 +32,13 @@
       "type": "biginteger",
       "min": "0",
       "max": "360"
+    },
+    "z_index": {
+      "type": "biginteger",
+      "required": false,
+      "default": "0",
+      "min": "0",
+      "max": "999"
     }
   }
 }

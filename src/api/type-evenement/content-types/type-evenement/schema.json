@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "type_evenements",
+  "info": {
+    "singularName": "type-evenement",
+    "pluralName": "type-evenements",
+    "displayName": "Type_evenement"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Nom": {
+      "type": "string"
+    }
+  }
+}

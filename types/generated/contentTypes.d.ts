@@ -881,7 +881,6 @@ export interface ApiEvenementEvenement extends Schema.CollectionType {
   };
   attributes: {
     Nom: Attribute.String & Attribute.Required;
-    Type: Attribute.Enumeration<['Exposition']> & Attribute.Required;
     Annee: Attribute.BigInteger &
       Attribute.Required &
       Attribute.SetMinMax<
@@ -892,6 +891,11 @@ export interface ApiEvenementEvenement extends Schema.CollectionType {
         string
       >;
     Images: Attribute.Media<'images', true>;
+    type_evenement: Attribute.Relation<
+      'api::evenement.evenement',
+      'oneToOne',
+      'api::type-evenement.type-evenement'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -906,6 +910,52 @@ export interface ApiEvenementEvenement extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiHomeHome extends Schema.SingleType {
+  collectionName: 'homes';
+  info: {
+    singularName: 'home';
+    pluralName: 'homes';
+    displayName: 'Home';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    horizontal_1: Attribute.Relation<
+      'api::home.home',
+      'oneToOne',
+      'api::projet.projet'
+    >;
+    horizontal_2: Attribute.Relation<
+      'api::home.home',
+      'oneToOne',
+      'api::projet.projet'
+    >;
+    vertical: Attribute.Relation<
+      'api::home.home',
+      'oneToOne',
+      'api::projet.projet'
+    >;
+    carre_1: Attribute.Relation<
+      'api::home.home',
+      'oneToOne',
+      'api::projet.projet'
+    >;
+    carre_2: Attribute.Relation<
+      'api::home.home',
+      'oneToOne',
+      'api::projet.projet'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::home.home', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::home.home', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -933,6 +983,15 @@ export interface ApiMoodboardMoodboard extends Schema.CollectionType {
         },
         string
       >;
+    z_index: Attribute.BigInteger &
+      Attribute.SetMinMax<
+        {
+          min: '0';
+          max: '999';
+        },
+        string
+      > &
+      Attribute.DefaultTo<'0'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1002,6 +1061,9 @@ export interface ApiProjetProjet extends Schema.CollectionType {
       'api::categorie.categorie'
     >;
     Principale: Attribute.Media<'images'>;
+    Home_presentation_vertical: Attribute.Media<'images'>;
+    Home_presentation_horizontal: Attribute.Media<'images'>;
+    Home_presentation_carre: Attribute.Media<'images'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1013,6 +1075,36 @@ export interface ApiProjetProjet extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::projet.projet',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiTypeEvenementTypeEvenement extends Schema.CollectionType {
+  collectionName: 'type_evenements';
+  info: {
+    singularName: 'type-evenement';
+    pluralName: 'type-evenements';
+    displayName: 'Type_evenement';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Nom: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::type-evenement.type-evenement',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::type-evenement.type-evenement',
       'oneToOne',
       'admin::user'
     > &
@@ -1041,8 +1133,10 @@ declare module '@strapi/types' {
       'api::categorie.categorie': ApiCategorieCategorie;
       'api::contact.contact': ApiContactContact;
       'api::evenement.evenement': ApiEvenementEvenement;
+      'api::home.home': ApiHomeHome;
       'api::moodboard.moodboard': ApiMoodboardMoodboard;
       'api::projet.projet': ApiProjetProjet;
+      'api::type-evenement.type-evenement': ApiTypeEvenementTypeEvenement;
     }
   }
 }

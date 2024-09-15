@@ -140,6 +140,28 @@
       "mappedBy": "projet"
     },
     "Principale": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "Home_presentation_vertical": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "Home_presentation_horizontal": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "Home_presentation_carre": {
       "allowedTypes": [
         "images"
       ],

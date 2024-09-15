@@ -16,13 +16,6 @@
       "type": "string",
       "required": true
     },
-    "Type": {
-      "type": "enumeration",
-      "enum": [
-        "Exposition"
-      ],
-      "required": true
-    },
     "Annee": {
       "type": "biginteger",
       "required": true,
@@ -30,11 +23,17 @@
       "min": "0"
     },
     "Images": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
+    },
+    "type_evenement": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::type-evenement.type-evenement"
     }
   }
 }
